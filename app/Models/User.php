@@ -51,6 +51,27 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    
+    public function getPhotoFullUrlAttribute()
+    {
+        if ($this->photo_url && Storage::exists("public/photos/{$this->photo_filename}")) {
+            return asset("storage/photos/{$this->photo_filename}");
+        } else {
+            return asset("storage/photos/anonymous.png");
+        }
+    }
+    public function getTypeDescriptionAttribute()
+    {
+        return match ($this->type) {
+            'A'       => "Administrative",
+            'C'       => "Customer",
+            default => '?'
+        };
+    }
+
+    public function Customer(): HasOne
+    {
+        return $this->hasOne(Customer::class);
+    }
+
 
 }
