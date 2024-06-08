@@ -8,6 +8,8 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\MovieFormRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Storage;
+
 
 class MovieController extends Controller
 {
@@ -41,7 +43,7 @@ class MovieController extends Controller
         return redirect('/movies');
     }
 
-<<<<<<< Updated upstream
+
     public function getPhotoFullUrlAttribute()
     {
         if ($this->poster_filename && Storage::exists("public/movies/{$this->poster_filename}")) {
@@ -49,7 +51,9 @@ class MovieController extends Controller
         } else {
             return asset("storage/posters/anonymous.png");
         }
-=======
+    }
+
+
     public function edit(Movie $movie): View
     {
         return view('movies.edit')->with('movie', $movie);
@@ -59,6 +63,6 @@ class MovieController extends Controller
     {
         $movie->update($request->all());
         return redirect('/movie');
->>>>>>> Stashed changes
+
     }
 }
