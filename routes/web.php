@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('movies', [MovieController::class, 'index']);
 Route::get('movies/create', [MovieController::class, 'create']);
+Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
 Route::post('movies', [MovieController::class, 'store']);
 
 require __DIR__.'/auth.php';
