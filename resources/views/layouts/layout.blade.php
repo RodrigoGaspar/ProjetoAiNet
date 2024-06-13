@@ -5,39 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CineMagic</title>
-    <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
+   
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        html {
-            height: 100%;
-        }
-
-        body {
-            height: 100%;
-            display: flex;
-        }
-
-        body>nav {
-            min-width: 150px;
-            background-color: lightgray;
-            margin-right: 20px;
-        }
-
-        body>nav ul {
-            list-style-type: none;
-            padding-left: 15px;
-            margin-bottom: 10px;
-        }
-
-        body>nav li {
-            margin-bottom: 10px;
-        }
-    </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
