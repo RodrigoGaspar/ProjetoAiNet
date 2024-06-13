@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ESTG</title>
+    <title>CineMagic</title>
     <style>
         table,
         th,
@@ -41,21 +41,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <nav class="bg-indigo-400">
-        <ul>
-            <li>
-                
-            </li>
-            <li>
-            </li>
-        </ul>
-    </nav>
-    <div class="main">
-        <header>
-            <h1>@yield('header-title')</h1>
-        </header>
-        <div class="content">
-            @yield('main')
-        </div>
-    </div>
+
+    @include('layouts.nav')
+
+    @yield('content')
+
 </body>
