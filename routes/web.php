@@ -3,6 +3,15 @@
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Customer;
+use App\Models\Genre;
+use App\Models\Movie;
+use App\Models\Purchase;
+use App\Models\Screening;
+use App\Models\Seat;
+use App\Models\Theather;
+use App\Models\Ticket;
+use App\Models\User;
 
 Route::view('/', 'home')->name('home');
 
@@ -18,7 +27,7 @@ Route::middleware('auth')->group(function () {
 });
 
 //Movies
-Route::get('movies', [MovieController::class, 'index']);
+Route::get('movies', [MovieController::class, 'index'])->name('movies');
 Route::get('movies/create', [MovieController::class, 'create']);
 Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
 Route::post('movies', [MovieController::class, 'store']);
