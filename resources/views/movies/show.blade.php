@@ -1,53 +1,47 @@
-@extends('layouts.main')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('header-title', 'Movies')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movies</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
 
-@section('main')
-<div >
-    <table class="table-auto ">
+<body>
+    <table>
         <thead>
-            <tr class="border-b-2 border-b-gray-400 dark:border-b-gray-500
-            bg-gray-100 dark:bg-gray-100">
+            <tr>
                 <th>Title</th>
-                <th>Genre</th>
-                <th>Year</th>
-                {{-- <th>poster</th> --}}
-                <th>Synopsis</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>genre_code</th>
+                <th>year</th>
+                <th>poster</th>
+                <th>synopsis</th>
+                <th>trailer</th>
             </tr>
         </thead>
         <tbody>
             {{-- @foreach ($movies as $movie) --}}
-            <tr class="border-b border-b-gray-400 dark:border-b-gray-500">
-                <td class="px-2 py-2 text-left">{{ $movie->title }}</td>
-                <td class="px-2 py-2 text-left">{{ $movie->genre_code }}</td>
-                <td class="px-2 py-2 text-left">{{ $movie->year }}</td>
-                {{-- <td> --}}
-                    {{--
-                    <x-field.image name="{{ $movie->poster_filename }}" label="Photo" width="md" readonly
-                        deleteTitle="Delete Photo" :deleteAllow="true" :imageUrl="photoFullUrl" />
-                    {{-- {{ $movie->poster_filename }} --}}
-                    {{--
-                </td> --}}
-                <td class="px-2 py-2 text-left">{{ $movie->synopsis }}</td>
-                <td class="px-2 py-2 text-left"><a href="{{ $movie->trailer_url }}" target="new">Trailer</a></td>
-                <td class="px-2 py-2 text-left"><a href="{{ route('movies.show', ['movie' => $movie]) }}">View</a></td>
-                <td class="px-2 py-2 text-left">
-                    {{-- <a href="{{ route('movies.edit', ['movies' => $movie]) }}">
-                    Update</a> --}}
-                    <a >
-                        Add</a>
-                    </td>
-
-            </tr>
+                <tr>
+                    <td>{{ $movie->title }}</td>
+                    <td>{{ $movie->genre_code }}</td>
+                    <td>{{ $movie->year }}</td>
+                    <td>{{ $movie->poster_filename }}</td>
+                    <td>{{ $movie->synopsis }}</td>
+                    <td><a href="{{ $movie->trailer_url }}" target="new">Trailer</a></td>
+                </tr>
             {{-- @endforeach --}}
         </tbody>
     </table>
-</div>
 
-<div class="mt-4">
-    {{-- {{ $movie->links() }} --}}
-</div>
-@endsection
+</body>
+
+</html>
