@@ -10,10 +10,8 @@
             bg-gray-100 dark:bg-gray-100">
                 <th>Title</th>
                 <th>Genre</th>
-                <th>Year</th>
                 {{-- <th>poster</th> --}}
                 <th>Synopsis</th>
-                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -23,7 +21,6 @@
             <tr class="border-b border-b-gray-400 dark:border-b-gray-500">
                 <td class="px-2 py-2 text-left">{{ $movie->title }}</td>
                 <td class="px-2 py-2 text-left">{{ $movie->genre_code }}</td>
-                <td class="px-2 py-2 text-left">{{ $movie->year }}</td>
                 {{-- <td> --}}
                     {{--
                     <x-field.image name="{{ $movie->poster_filename }}" label="Photo" width="md" readonly
@@ -32,7 +29,6 @@
                     {{--
                 </td> --}}
                 <td class="px-2 py-2 text-left">{{ $movie->synopsis }}</td>
-                <td class="px-2 py-2 text-left"><a href="{{ $movie->trailer_url }}" target="new">Trailer</a></td>
                 <td class="px-2 py-2 text-left"><a href="{{ route('movies.show', ['movie' => $movie]) }}">View</a></td>
                 <td class="px-2 py-2 text-left">
                     {{-- <a href="{{ route('movies.edit', ['movies' => $movie]) }}">
