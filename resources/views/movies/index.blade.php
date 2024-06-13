@@ -44,6 +44,6 @@
 </div>
 
 <div class="mt-4">
-    {{-- {{ $movie->links() }} --}}
+    {{ $movies->links() }}
 </div>
 @endsection
