@@ -20,8 +20,8 @@ class MovieController extends Controller
 
     public function index(): View
     {
+        // $allMovies = Movie::orderBy('title')->paginate(20)->withQueryString();
         $allMovies = Movie::orderBy('title')->paginate(20)->withQueryString();
-
         //$allMovies = Movie::all();
         return view('movies.index')->with('movies', $allMovies);
     }

@@ -19,21 +19,21 @@
                         <!-- Menu Item: Courses -->
                         @can('viewShowcase', App\Models\Movie::class)
                             <x-menus.menu-item content="Movies" href="{{ route('movies') }}"
-                                selected="{{ Route::currentRouteName() == 'courses' }}" />
+                                selected="{{ Route::currentRouteName() == 'movies' }}" />
                         @endcan
 
-                        @auth
+                        {{-- @auth
                             <x-menus.submenu selectable="0" uniqueName="submenu_user">
                                 <x-slot:content>
                                     <div class="pe-1">
-                                        <img src="{{ Auth::user()->photoFullUrl }}"
+                                        {{-- <img src="{{ Auth::user()->photoFullUrl }}"
                                             class="w-11 h-11 min-w-11 min-h-11 rounded-full">
                                     </div>
                                     {{-- ATENÇÃO - ALTERAR FORMULA DE CALCULO DAS LARGURAS MÁXIMAS QUANDO O MENU FOR ALTERADO --}}
-                                    <div
-                                        class="ps-1 sm:max-w-[calc(100vw-39rem)] md:max-w-[calc(100vw-41rem)] lg:max-w-[calc(100vw-46rem)] xl:max-w-[34rem] truncate">
-                                        {{ Auth::user()->name }}
-                                    </div>
+                                    {{-- <div
+                                        class="ps-1 sm:max-w-[calc(100vw-39rem)] md:max-w-[calc(100vw-41rem)] lg:max-w-[calc(100vw-46rem)] xl:max-w-[34rem] truncate"> --}}
+                                        {{-- {{ Auth::user()->name }} --}}
+                                    {{-- </div>
                                 </x-slot>
                                 <x-menus.submenu-item content="Área de administração" selectable="0" href="{{ route('dashboard') }}" />
                                 @can('viewMy', App\Models\Discipline::class)
@@ -47,8 +47,8 @@
                                 @can('viewMy', App\Models\Student::class)
                                     <x-menus.submenu-item content="My Students" selectable="0"
                                         href="{{ route('students.my') }}" />
-                                    <hr>
-                                @endcan
+                                    <hr> --}}
+                                {{-- @endcan
                                 @auth
                                     <hr>
                                     <x-menus.submenu-item content="Profile" selectable="0" :href="match (Auth::user()->type) {
@@ -66,12 +66,12 @@
                                 </form>
                                 <x-menus.submenu-item content="Log Out" selectable="0" form="form_to_logout_from_menu" />
 
-                            </x-menus.submenu>
-                        @else
+                            </x-menus.submenu> --}}
+                        {{-- @else
                             <!-- Menu Item: Login -->
                             <x-menus.menu-item content="Login" selectable="1" href="{{ route('login') }}"
                                 selected="{{ Route::currentRouteName() == 'login' }}" />
-                        @endauth
+                        @endauth --}}
                     </div>
                     <!-- Hamburger -->
                     <div class="absolute right-0 top-0 flex sm:hidden pt-3 pe-3 text-black dark:text-gray-50">
