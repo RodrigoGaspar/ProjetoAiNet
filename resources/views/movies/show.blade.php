@@ -3,7 +3,7 @@
 @section('header-title', 'Movies')
 
 @section('main')
-<div >
+<div>
     <table class="table-auto ">
         <thead>
             <tr class="border-b-2 border-b-gray-400 dark:border-b-gray-500
@@ -33,13 +33,17 @@
                 </td> --}}
                 <td class="px-2 py-2 text-left">{{ $movie->synopsis }}</td>
                 <td class="px-2 py-2 text-left"><a href="{{ $movie->trailer_url }}" target="new">Trailer</a></td>
-                <td class="px-2 py-2 text-left"><a href="{{ route('movies.show', ['movie' => $movie]) }}">View</a></td>
+                <td class="px-2 py-2 text-left">
+                    <x-table.icon-show class="ps-3 px-0.5" href="{{ route('movies.show', ['movie' => $movie]) }}" />
+                </td>
+                {{-- <x-table.icon-show class="ps-3 px-0.5" href="{{ route('movies.show', ['movie' => $movie]) }}" /> --}}
+                {{-- <td class="px-2 py-2 text-left"><a href="{{ route('movies.show', ['movie' => $movie]) }}">View</a></td> --}}
                 <td class="px-2 py-2 text-left">
                     {{-- <a href="{{ route('movies.edit', ['movies' => $movie]) }}">
-                    Update</a> --}}
-                    <a >
+                        Update</a> --}}
+                    <a>
                         Add</a>
-                    </td>
+                </td>
 
             </tr>
             {{-- @endforeach --}}
