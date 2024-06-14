@@ -18,7 +18,7 @@
                     invisible h-0 sm:visible sm:h-auto">
                 <!-- Menu Item: Courses -->
                 @can('viewMovies', App\Models\Movie::class)
-                    <x-menus.menu-item content="Movies" href="{{ route('index') }}"
+                    <x-menus.menu-item content="Movies" href="{{ route('movies') }}"
                         selected="{{ Route::currentRouteName() == 'index' }}" />
                 @endcan
 
@@ -47,7 +47,7 @@
                                 <x-menus.submenu-item content="Área de administração" selectable="0" href="{{ route('dashboard') }}" />
                                 @can('viewMy', App\Models\Movie::class)
                                     <x-menus.submenu-item content="My Movies" selectable="0"
-                                        href="{{ route('movies.my') }}" />
+                                        href="{{ route('movies') }}" />
                                 @endcan
                                 {{--
                                 @can('viewMy', App\Models\::class)
@@ -84,6 +84,7 @@
                     <!-- Menu Item: Login -->
                     <x-menus.menu-item content="Login" selectable="1" href="{{ route('login') }}"
                         selected="{{ Route::currentRouteName() == 'login' }}" />
+                @endif
                 @endauth
             </div>
             <!-- Hamburger -->
