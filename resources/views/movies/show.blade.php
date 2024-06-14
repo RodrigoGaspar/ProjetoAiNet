@@ -1,21 +1,32 @@
-@extends('layouts.main')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('header-title', 'Movies')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movies</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
 
 @section('main')
 <div>
     <table class="table-auto ">
         <thead>
-            <tr class="border-b-2 border-b-gray-400 dark:border-b-gray-500
-            bg-gray-100 dark:bg-gray-100">
+            <tr>
                 <th>Title</th>
-                <th>Genre</th>
-                <th>Year</th>
-                {{-- <th>poster</th> --}}
-                <th>Synopsis</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>genre_code</th>
+                <th>year</th>
+                <th>poster</th>
+                <th>synopsis</th>
+                <th>trailer</th>
             </tr>
         </thead>
         <tbody>
@@ -49,9 +60,7 @@
             {{-- @endforeach --}}
         </tbody>
     </table>
-</div>
 
-<div class="mt-4">
-    {{-- {{ $movie->links() }} --}}
-</div>
-@endsection
+</body>
+
+</html>
