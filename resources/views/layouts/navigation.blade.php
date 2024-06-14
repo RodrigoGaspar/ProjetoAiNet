@@ -17,6 +17,20 @@
                     <x-nav-link :href="route('movies')" :active="request()->routeIs('movies')">
                         {{ __('Cart') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('movies')" :active="request()->routeIs('movies')">
+                        {{ __('Screenings') }}
+                    </x-nav-link>
+
+                    @if(auth()->check() && auth()->user()->type == 'A')
+                    <x-nav-link :href="route('movies')" :active="request()->routeIs('movies')">
+                        {{ __('Statistics') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('movies')" :active="request()->routeIs('movies')">
+                        {{ __('Profiles') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
