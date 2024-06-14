@@ -13,11 +13,7 @@ use App\Models\Theather;
 use App\Models\Ticket;
 use App\Models\User;
 
-Route::view('/', 'home')->name('movies');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::view('/', 'home')->name('/');
 
 //Users
 Route::middleware('auth')->group(function () {
