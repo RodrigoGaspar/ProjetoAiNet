@@ -13,7 +13,7 @@ use App\Models\Theather;
 use App\Models\Ticket;
 use App\Models\User;
 
-Route::view('/', 'home')->name('home');
+Route::view('/', 'home')->name('movies');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
