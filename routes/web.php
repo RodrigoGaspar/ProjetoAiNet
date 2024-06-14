@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScreeningController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Customer;
 use App\Models\Genre;
@@ -29,5 +30,8 @@ Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.sho
 Route::post('movies', [MovieController::class, 'store']);
 Route::get('movies/{movie}/edit', [MovieController::class, 'edit']);
 Route::put('movies/{movie}', [MovieController::class, 'update']);
+
+Route::get('screenings', [ScreeningController::class, 'index'])->name('screenings');
+
 
 require __DIR__.'/auth.php';

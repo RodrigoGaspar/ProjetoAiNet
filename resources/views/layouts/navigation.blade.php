@@ -18,7 +18,7 @@
                         {{ __('Cart') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('movies')" :active="request()->routeIs('movies')">
+                    <x-nav-link :href="route('screenings')" :active="request()->routeIs('screenings')">
                         {{ __('Screenings') }}
                     </x-nav-link>
 

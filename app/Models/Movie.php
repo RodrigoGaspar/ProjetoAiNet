@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Storage;
+
 
 class Movie extends Model
 {
@@ -25,5 +27,19 @@ class Movie extends Model
     public function genre() : HasOne
     {
         return $this->hasOne(Genre::class,'genre_code','code');
+    }
+
+    public function getImageExistsAttribute()
+    {
+        return Storage::exists("public/posters/{$this->fileName}");
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->imageExists) {
+            return asset("storage/posters/{$this->fileName}");
+        } else {
+            return asset("storage/posters/_no_poster.png");
+        }
     }
 }
