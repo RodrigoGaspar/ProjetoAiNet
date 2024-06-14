@@ -15,7 +15,6 @@
                 <th>Synopsis</th>
                 <th></th>
                 <th></th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +32,6 @@
                 </td> --}}
                 <td class="px-2 py-2 text-left">{{ $movie->synopsis }}</td>
                 <td class="px-2 py-2 text-left"><a href="{{ $movie->trailer_url }}" target="new">Trailer</a></td>
-                <td class="px-2 py-2 text-left"><a href="{{ route('movies.show', ['movie' => $movie]) }}">View</a></td>
                 <td class="px-2 py-2 text-left">
                     {{-- <a href="{{ route('movies.edit', ['movies' => $movie]) }}">
                     Update</a> --}}

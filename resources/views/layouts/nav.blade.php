@@ -6,7 +6,7 @@
         <div class="relative flex flex-col sm:flex-row px-6 sm:px-0 grow justify-between">
             <!-- Logo -->
             <div class="shrink-0 -ms-4">
-                <a href="{{ route('home') }}">
+                <a href="{{ route('movies') }}">
                     <div
                         class="h-16 w-40 bg-cover bg-[url('../img/politecnico_h.svg')] dark:bg-[url('../img/politecnico_h_white.svg')]">
                     </div>
