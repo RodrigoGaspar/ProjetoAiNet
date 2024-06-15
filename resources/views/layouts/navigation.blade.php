@@ -5,8 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <x-nav-link :href="route('/')" :active="request()->routeIs('/')">
-                        {{ __('CineMagic') }}
-                    </x-nav-link>
+                    {{ __('CineMagic') }}
+                </x-nav-link>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -14,24 +14,26 @@
                         {{ __('Movies') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('movies')" :active="request()->routeIs('movies')">
-                        {{ __('Cart') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('movies')" :active="request()->routeIs('movies')">
+                    <x-nav-link :href="route('screenings')" :active="request()->routeIs('screenings')">
                         {{ __('Screenings') }}
                     </x-nav-link>
 
                     @if(auth()->check() && auth()->user()->type == 'A')
-                    <x-nav-link :href="route('movies')" :active="request()->routeIs('movies')">
-                        {{ __('Statistics') }}
-                    </x-nav-link>
+                        <x-nav-link :href="route('movies')" :active="request()->routeIs('')">
+                            {{ __('Statistics') }}
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('movies')" :active="request()->routeIs('movies')">
-                        {{ __('Profiles') }}
-                    </x-nav-link>
+                        <x-nav-link :href="route('movies')" :active="request()->routeIs('')">
+                            {{ __('Profiles') }}
+                        </x-nav-link>
                     @endif
                 </div>
+            </div>
+
+            <div class="hidden sm:flex sm:ms-60">
+                <x-nav-link :href="route('movies')" :active="request()->routeIs('')">
+                    {{ __('Cart') }}
+                </x-nav-link>
             </div>
 
             @if(isset(Auth::user()->name))

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Movie extends Model
 {
@@ -25,5 +26,10 @@ class Movie extends Model
     public function genre() : HasOne
     {
         return $this->hasOne(Genre::class,'genre_code','code');
+    }
+
+    public function screenings(): HasMany
+    {
+        return $this->hasMany(Screening::class);
     }
 }

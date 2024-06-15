@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\MovieFormRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 
 class MovieController extends Controller
@@ -16,7 +17,19 @@ class MovieController extends Controller
 
     use AuthorizesRequests;
 
-    
+
+    public function lastTwoWeeks()
+    {
+        $today = Carbon::today();
+
+        $twoWeeksLater = $today->copy()->addWeeks(2);
+
+        $movies = Movie::whereHas('screenings', function ($query) use ($today, $twoWeeksLater) {
+            $query->whereBetween('date', [$today, $twoWeeksLater]);
+        })->get();
+
+        return view('screenings.index')->with('movies', $movies);
+    }
 
     public function index(): View
     {
