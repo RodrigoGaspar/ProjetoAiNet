@@ -14,9 +14,9 @@ class Screening extends Model
 
     protected $primaryKey = 'id';
 
-    public function movie() : HasOne
+    public function movie()
     {
-        return $this->hasOne(Movie::class,'movie_id','id');
+        return $this->belongsTo(Movie::class, 'movie_id', 'id');
     }
 
     public function theater() : HasOne

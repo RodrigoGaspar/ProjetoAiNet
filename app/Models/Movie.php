@@ -42,4 +42,9 @@ class Movie extends Model
             return asset("storage/posters/_no_poster.png");
         }
     }
+
+    public function screenings()
+    {
+        return $this->hasMany(Screening::class, 'movie_id');
+    }
 }
