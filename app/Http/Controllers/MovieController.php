@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Models\Screening;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\MovieFormRequest;
@@ -47,7 +48,10 @@ class MovieController extends Controller
 
     public function show(Movie $movie): View
     {
-        return view('movies.show')->with('movie', $movie);
+        $start_date = ('2023-06-07');
+        $end_date = Carbon::now()->addDays(14)->format('Y-m-d');
+        $screenings = Screening::where('movie_id', $movie->id)->whereBetween('date', [$start_date, $end_date])->get();
+        return view('movies.show')->with('movie', $movie)->with('screenings', $screenings);
     }
 
     public function store(Request $request): RedirectResponse
@@ -77,5 +81,11 @@ class MovieController extends Controller
         $movie->update($request->all());
         return redirect('/movie');
 
+    }
+
+    public function destroy(Movie $movie)
+    {
+        $movie->delete();  // Assumindo que o modelo Movie está configurado para soft delete
+        return redirect()->route('movies.index')->with('success', 'Filme apagado com sucesso.');
     }
 }

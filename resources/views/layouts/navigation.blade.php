@@ -23,7 +23,7 @@
                             {{ __('Statistics') }}
                         </x-nav-link>
 
-                        <x-nav-link :href="route('movies')" :active="request()->routeIs('')">
+                        <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
                             {{ __('Profiles') }}
                         </x-nav-link>
                     @endif

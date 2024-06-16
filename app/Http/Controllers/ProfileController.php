@@ -8,12 +8,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
+    public function index()
+    {
+        $profiles = User::all();
+
+        return view('profile.index', compact('profiles'));
+    }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -37,6 +45,7 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+
     /**
      * Delete the user's account.
      */
@@ -56,5 +65,16 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function toggleBlocked($id)
+    {
+        $perfil = User::findOrFail($id);
+
+        // Inverte o estado de blocked
+        $perfil->blocked = !$perfil->blocked;
+        $perfil->save();
+
+        return redirect()->back()->with('success', 'Estado de bloqueio alterado com sucesso.');
     }
 }
