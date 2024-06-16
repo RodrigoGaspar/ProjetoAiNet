@@ -3,6 +3,7 @@
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScreeningController;
+use App\Http\Controllers\StatisticsController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Customer;
 use App\Models\Genre;
@@ -33,6 +34,8 @@ Route::get('movies/{movie}/edit', [MovieController::class, 'edit'])->name('movie
 Route::put('movies/{movie}', [MovieController::class, 'update']);
 
 Route::get('screenings', [MovieController::class, 'lastTwoWeeks'])->name('screenings');
+
+Route::get('/statistics', [StatisticsController::class, 'index'])->name('statistics');
 
 Route::get('profile/all', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('profile/manage/{id}', function ($id) {

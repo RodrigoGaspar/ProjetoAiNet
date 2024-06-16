@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Screening;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Screening;

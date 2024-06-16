@@ -19,7 +19,7 @@
                     </x-nav-link>
 
                     @if(auth()->check() && auth()->user()->type == 'A')
-                        <x-nav-link :href="route('movies')" :active="request()->routeIs('')">
+                        <x-nav-link :href="route('statistics')" :active="request()->routeIs('statistics')">
                             {{ __('Statistics') }}
                         </x-nav-link>
 
