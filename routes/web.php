@@ -25,13 +25,22 @@ Route::middleware('auth')->group(function () {
 
 //Movies
 Route::get('movies', [MovieController::class, 'index'])->name('movies');
-Route::get('movies/create', [MovieController::class, 'create']);
+Route::get('movies/create', [MovieController::class, 'create'])->name('movies.create');
 Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
+Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 Route::post('movies', [MovieController::class, 'store']);
-Route::get('movies/{movie}/edit', [MovieController::class, 'edit']);
+Route::get('movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
 Route::put('movies/{movie}', [MovieController::class, 'update']);
 
 Route::get('screenings', [MovieController::class, 'lastTwoWeeks'])->name('screenings');
+
+Route::get('profile/all', [ProfileController::class, 'index'])->name('profile.index');
+Route::get('profile/manage/{id}', function ($id) {
+    $profile = App\Models\User::findOrFail($id);
+    return view('profile.manage', compact('profile'));
+})->name('profile.manage');
+
+Route::put('/profile/{id}/toggle-blocked', [ProfileController::class, 'toggleBlocked'])->name('profile.toggleBlocked');
 
 
 
