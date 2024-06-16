@@ -53,5 +53,5 @@
         </div>
     </x-app-layout>
 @else
-    <p>Você não tem permissão para acessar esta secção.</p>
+    <p>You do not have permission to access this section.</p>
 @endif

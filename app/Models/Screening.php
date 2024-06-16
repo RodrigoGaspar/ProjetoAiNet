@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Theater;
 
 class Screening extends Model
 {
@@ -18,6 +20,7 @@ class Screening extends Model
     {
         return $this->belongsTo(Movie::class, 'movie_id', 'id');
     }
+
 
     public function theater()
     {

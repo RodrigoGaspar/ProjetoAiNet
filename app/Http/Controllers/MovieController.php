@@ -19,7 +19,7 @@ class MovieController extends Controller
     use AuthorizesRequests;
 
 
-    public function lastTwoWeeks()
+    public function twoWeeksLater()
     {
         $today = Carbon::today();
 
@@ -48,9 +48,9 @@ class MovieController extends Controller
 
     public function show(Movie $movie): View
     {
-        $start_date = ('2023-06-07');
-        $end_date = Carbon::now()->addDays(14)->format('Y-m-d');
-        $screenings = Screening::where('movie_id', $movie->id)->whereBetween('date', [$start_date, $end_date])->get();
+        $today = Carbon::today();
+        $end_date = Carbon::now()->addWeeks(2)->format('Y-m-d');
+        $screenings = Screening::where('movie_id', $movie->id)->whereBetween('date', [$today, $end_date])->get();
         return view('movies.show')->with('movie', $movie)->with('screenings', $screenings);
     }
 
