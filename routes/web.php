@@ -31,7 +31,8 @@ Route::post('movies', [MovieController::class, 'store']);
 Route::get('movies/{movie}/edit', [MovieController::class, 'edit']);
 Route::put('movies/{movie}', [MovieController::class, 'update']);
 
-Route::get('screenings', [ScreeningController::class, 'index'])->name('screenings');
+Route::get('screenings', [MovieController::class, 'lastTwoWeeks'])->name('screenings');
+
 
 
 require __DIR__.'/auth.php';
