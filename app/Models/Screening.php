@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Theater;
 
 class Screening extends Model
 {
@@ -14,13 +16,13 @@ class Screening extends Model
 
     protected $primaryKey = 'id';
 
-    public function movie() : HasOne
+    public function movie(): BelongsTo
     {
-        return $this->hasOne(Movie::class,'movie_id','id');
+        return $this->belongsTo(Movie::class);
     }
 
-    public function theater() : HasOne
+    public function theater(): BelongsTo
     {
-        return $this->hasOne(Theather::class,'theater_id','id');
+        return $this->belongsTo(Theater::class);
     }
 }

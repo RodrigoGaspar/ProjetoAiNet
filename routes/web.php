@@ -32,7 +32,11 @@ Route::post('movies', [MovieController::class, 'store']);
 Route::get('movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
 Route::put('movies/{movie}', [MovieController::class, 'update']);
 
-Route::get('screenings', [MovieController::class, 'lastTwoWeeks'])->name('screenings');
+Route::get('screenings', [MovieController::class, 'twoWeeksLater'])->name('screenings');
+Route::get('/screenings/{screening}/edit', [ScreeningController::class, 'edit'])->name('screening.edit');
+Route::put('screenings/{screening}', [ScreeningController::class, 'update'])->name('screening.update');
+Route::delete('/screenings/{screening}', [ScreeningController::class, 'destroy'])->name('screening.destroy');
+Route::get('/screenings/{screening}/buy', [ScreeningController::class, 'buy'])->name('screening.buy');
 
 Route::get('profile/all', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('profile/manage/{id}', function ($id) {
@@ -42,6 +46,6 @@ Route::get('profile/manage/{id}', function ($id) {
 
 Route::put('/profile/{id}/toggle-blocked', [ProfileController::class, 'toggleBlocked'])->name('profile.toggleBlocked');
 
+Route::post('/screenings/{screening}/purchase', [ScreeningController::class, 'purchase'])->name('ticket.purchase');
 
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
