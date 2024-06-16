@@ -23,9 +23,9 @@ class Movie extends Model
 
     protected $primaryKey = 'id';
 
-    public function genre() : HasOne
+    public function genre()
     {
-        return $this->hasOne(Genre::class,'genre_code','code');
+        return $this->belongsTo(Genre::class, 'genre_code', 'code');
     }
 
     public function screenings(): HasMany

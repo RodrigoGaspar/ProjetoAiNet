@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Models\Genre;
 use App\Models\Screening;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -35,9 +36,12 @@ class MovieController extends Controller
     public function index(): View
     {
         // $allMovies = Movie::orderBy('title')->paginate(20)->withQueryString();
-        $allMovies = Movie::orderBy('title')->paginate(20)->withQueryString();
+        $allMovies = Movie::orderBy('title')->get();
         //$allMovies = Movie::all();
-        return view('movies.index')->with('movies', $allMovies);
+
+        $genres = Genre::all();
+
+        return view('movies.index')->with('movies', $allMovies)->with('genres', $genres);
     }
 
     public function create(): View
