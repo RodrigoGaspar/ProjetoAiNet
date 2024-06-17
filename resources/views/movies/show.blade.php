@@ -92,7 +92,7 @@
                                                             </button>
                                                         </form>
                                                     </td>
-                                                @elseif(auth()->check() && auth()->user()->type == 'C')
+                                                @elseif(!auth()->check() || (auth()->check() && auth()->user()->type == 'C'))
                                                     <td class="px-2 py-2 text-center">
                                                         <a href="{{ route('screening.buy', $screening->id) }}"
                                                             class="text-green-600 hover:text-green-900 dark:text-green-400 dark:hover:text-green-200"

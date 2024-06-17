@@ -14,9 +14,9 @@ class Purchase extends Model
 
     protected $primaryKey = 'id';
 
-    public function Customer() : HasOne
+    public function Customer(): HasOne
     {
-        return $this->hasOne(Customer::class,'customer_id','id');
+        return $this->hasOne(Customer::class, 'customer_id', 'id');
     }
 
 }
