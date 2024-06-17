@@ -57,6 +57,7 @@
                     @endif
                 </div>
             </div>
+<<<<<<< Updated upstream
 
             <div class="hidden sm:flex sm:ms-60">
                 <x-nav-link :href="route('movies')" :active="request()->routeIs('')">
@@ -64,6 +65,15 @@
                 </x-nav-link>
             </div>
 
+=======
+            @if(!auth()->check() || (auth()->check() && auth()->user()->type == 'C'))
+                <div class="hidden sm:flex sm:ms-60">
+                    <x-nav-link :href="route('cart.show')" :active="request()->routeIs('')">
+                        {{ __('Cart') }}
+                    </x-nav-link>
+                </div>
+            @endif
+>>>>>>> Stashed changes
             @if(isset(Auth::user()->name))
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">

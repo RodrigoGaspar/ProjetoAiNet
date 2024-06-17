@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CartConfirmationFormRequest;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -17,29 +18,29 @@ class CartController extends Controller
         return view('cart.show', compact('cart'));
     }
 
-    public function addToCart(Request $request, Discipline $discipline): RedirectResponse
+    public function addToCart(Request $request, Ticket $ticket): RedirectResponse
     {
         $cart = session('cart', null);
         if (!$cart) {
-            $cart = collect([$discipline]);
+            $cart = collect([$ticket]);
             $request->session()->put('cart', $cart);
         } else {
-            if ($cart->firstWhere('id', $discipline->id)) {
+            if ($cart->firstWhere('id', $ticket->id)) {
                 $alertType = 'warning';
-                $url = route('disciplines.show', ['discipline' => $discipline]);
-                $htmlMessage = "Discipline <a href='$url'>#{$discipline->id}</a>
-                <strong>\"{$discipline->name}\"</strong> was not added to the cart because it is already there!";
+                $url = route('disciplines.show', ['discipline' => $ticket]);
+                $htmlMessage = "Discipline <a href='$url'>#{$ticket->id}</a>
+                <strong>\"{$ticket->name}\"</strong> was not added to the cart because it is already there!";
                 return back()
                     ->with('alert-msg', $htmlMessage)
                     ->with('alert-type', $alertType);
             } else {
-                $cart->push($discipline);
+                $cart->push($ticket);
             }
         }
         $alertType = 'success';
-        $url = route('disciplines.show', ['discipline' => $discipline]);
-        $htmlMessage = "Discipline <a href='$url'>#{$discipline->id}</a>
-                <strong>\"{$discipline->name}\"</strong> was added to the cart.";
+        $url = route('disciplines.show', ['discipline' => $ticket]);
+        $htmlMessage = "Discipline <a href='$url'>#{$ticket->id}</a>
+                <strong>\"{$ticket->name}\"</strong> was added to the cart.";
         return back()
             ->with('alert-msg', $htmlMessage)
             ->with('alert-type', $alertType);

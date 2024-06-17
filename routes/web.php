@@ -6,6 +6,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\TheaterController;
+<<<<<<< Updated upstream
+=======
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\CartController;
+>>>>>>> Stashed changes
 use App\Models\Theater;
 use Illuminate\Support\Facades\Route;
 use App\Models\Customer;
@@ -57,6 +62,23 @@ Route::post('genres', [GenreController::class, 'store']);
 Route::get('/genres/{genre}/edit', [GenreController::class, 'edit'])->name('genres.edit');
 Route::put('genres/{genre}', [GenreController::class, 'update'])->name('genres.update');
 Route::delete('/genres/{genre}', [GenreController::class, 'softDelete'])->name('genres.delete');
+
+Route::post('cart', [CartController::class, 'confirm'])
+->name('cart.confirm')
+->can('confirm-cart');
+
+    // Add a discipline to the cart:
+    Route::post('cart/{ticket}', [CartController::class, 'addToCart'])
+        ->name('cart.add');
+    // Remove a discipline from the cart:
+    Route::delete('cart/{ticket}', [CartController::class, 'removeFromCart'])
+        ->name('cart.remove');
+    // Show the cart:
+    Route::get('cart', [CartController::class, 'show'])->name('cart.show');
+    // Clear the cart:
+    Route::delete('cart', [CartController::class, 'destroy'])->name('cart.destroy');
+
+
 
 Route::get('profile/all', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('profile/manage/{id}', function ($id) {
