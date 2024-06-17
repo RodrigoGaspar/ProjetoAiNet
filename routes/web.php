@@ -4,12 +4,9 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\StatisticsController;
-<<<<<<< Updated upstream
-=======
 use App\Http\Controllers\TheaterController;
 use App\Http\Controllers\PurchaseController;
 use App\Models\Theater;
->>>>>>> Stashed changes
 use Illuminate\Support\Facades\Route;
 use App\Models\Customer;
 use App\Models\Genre;
