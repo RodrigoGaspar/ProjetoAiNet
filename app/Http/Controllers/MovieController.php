@@ -43,7 +43,8 @@ class MovieController extends Controller
     public function create(): View
     {
         $newMovie = new Movie();
-        return view('movies.create')->with('movie', $newMovie);
+        $genres = Genre::all();
+        return view('movies.create', compact('genres'))->with('movie', $newMovie);
     }
 
     public function show(Movie $movie): View
@@ -83,9 +84,16 @@ class MovieController extends Controller
 
     }
 
-    public function destroy(Movie $movie)
+    public function delete($id)
     {
-        $movie->delete();  // Assumindo que o modelo Movie está configurado para soft delete
-        return redirect()->route('movies.index')->with('success', 'Filme apagado com sucesso.');
+        $movie = Movie::findOrFail($id);
+        $movie->delete(); // Realiza o soft delete
+
+        // Se precisar deletar fisicamente a imagem
+        if (Storage::exists('posters/' . $movie->poster_filename)) {
+            Storage::delete('posters/' . $movie->poster_filename);
+        }
+
+        return redirect()->route('movies')->with('success', 'Movie deleted successfully.');
     }
 }

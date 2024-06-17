@@ -28,10 +28,11 @@ Route::middleware('auth')->group(function () {
 Route::get('movies', [MovieController::class, 'index'])->name('movies');
 Route::get('movies/create', [MovieController::class, 'create'])->name('movies.create');
 Route::get('movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
-Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 Route::post('movies', [MovieController::class, 'store']);
 Route::get('movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
 Route::put('movies/{movie}', [MovieController::class, 'update']);
+Route::delete('/movies/{id}', [MovieController::class, 'delete'])->name('movie.delete');
+
 
 Route::get('screenings', [MovieController::class, 'twoWeeksLater'])->name('screenings');
 Route::get('/screenings/{screening}/edit', [ScreeningController::class, 'edit'])->name('screening.edit');
@@ -51,7 +52,8 @@ Route::put('/profile/{id}', [ProfileController::class, 'changed'])->name('profil
 Route::delete('/profile/{id}', [ProfileController::class, 'softDelete'])->name('profile.delete');
 
 
-
+Route::get('/profile/create', [ProfileController::class, 'create'])->name('profile.create');
+Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
 
 Route::put('/profile/{id}/toggle-blocked', [ProfileController::class, 'toggleBlocked'])->name('profile.toggleBlocked');
 
