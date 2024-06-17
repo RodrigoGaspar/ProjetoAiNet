@@ -14,6 +14,8 @@ class Theater extends Model
 
     protected $primaryKey = 'id';
 
+    public $timestamps = false;
+
     public function screenings(): HasMany
     {
         return $this->hasMany(Screening::class);

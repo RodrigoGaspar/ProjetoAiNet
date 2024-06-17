@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\TheaterController;
+use App\Models\Theater;
 use Illuminate\Support\Facades\Route;
 use App\Models\Customer;
 use App\Models\Genre;
@@ -40,6 +43,20 @@ Route::delete('/screenings/{screening}', [ScreeningController::class, 'destroy']
 Route::get('/screenings/{screening}/buy', [ScreeningController::class, 'buy'])->name('screening.buy');
 
 Route::get('/statistics', [StatisticsController::class, 'index'])->name('statistics');
+
+Route::get('/theaters', [TheaterController::class, 'index'])->name('theaters');
+Route::get('theaters/create', [TheaterController::class, 'create'])->name('theaters.create');
+Route::post('theaters', [TheaterController::class, 'store']);
+Route::get('/theaters/{theater}/edit', [TheaterController::class, 'edit'])->name('theaters.edit');
+Route::put('theaters/{theater}', [TheaterController::class, 'update'])->name('theaters.update');
+Route::delete('/theaters/{theater}', [TheaterController::class, 'softDelete'])->name('theaters.delete');
+
+Route::get('/genres', [GenreController::class, 'index'])->name('genres');
+Route::get('genres/create', [GenreController::class, 'create'])->name('genres.create');
+Route::post('genres', [GenreController::class, 'store']);
+Route::get('/genres/{genre}/edit', [GenreController::class, 'edit'])->name('genres.edit');
+Route::put('genres/{genre}', [GenreController::class, 'update'])->name('genres.update');
+Route::delete('/genres/{genre}', [GenreController::class, 'softDelete'])->name('genres.delete');
 
 Route::get('profile/all', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('profile/manage/{id}', function ($id) {
