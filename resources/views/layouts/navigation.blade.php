@@ -59,7 +59,7 @@
             </div>
             @if(!auth()->check() || (auth()->check() && auth()->user()->type == 'C'))
                 <div class="hidden sm:flex sm:ms-60">
-                    <x-nav-link :href="route('movies')" :active="request()->routeIs('')">
+                    <x-nav-link >
                         {{ __('Cart') }}
                     </x-nav-link>
                 </div>

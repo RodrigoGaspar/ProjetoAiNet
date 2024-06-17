@@ -7,6 +7,8 @@ use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\TheaterController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\TicketController;
 use App\Models\Theater;
 use Illuminate\Support\Facades\Route;
 use App\Models\Customer;
@@ -76,7 +78,8 @@ Route::post('/profile/store', [ProfileController::class, 'store'])->name('profil
 
 Route::put('/profile/{id}/toggle-blocked', [ProfileController::class, 'toggleBlocked'])->name('profile.toggleBlocked');
 
-Route::post('/screenings/{screening}/purchase', [ScreeningController::class, 'purchase'])->name('ticket.purchase');
+Route::post('/ticket/purchase/{screening}', [TicketController::class, 'purchaseTicket'])->name('ticket.purchase');
 
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 require __DIR__ . '/auth.php';
