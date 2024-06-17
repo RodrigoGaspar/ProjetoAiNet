@@ -7,7 +7,7 @@
             <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
 
                 <div class="w-full max-w-4xl mx-auto bg-white p-5 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-semibold text-center mb-5">Purchases Statistics 2024</h2>
+                    <h2 class="text-2xl font-semibold text-center mb-5">Purchases Statistics 2023</h2>
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
