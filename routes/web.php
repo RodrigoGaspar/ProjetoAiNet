@@ -4,9 +4,12 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\StatisticsController;
+<<<<<<< Updated upstream
+=======
 use App\Http\Controllers\TheaterController;
 use App\Http\Controllers\PurchaseController;
 use App\Models\Theater;
+>>>>>>> Stashed changes
 use Illuminate\Support\Facades\Route;
 use App\Models\Customer;
 use App\Models\Genre;
@@ -25,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/purchase-history', [PurchaseController::class, 'index'])->name('profile.history');
 });
 
 //Movies
@@ -61,5 +65,6 @@ Route::post('/profile/store', [ProfileController::class, 'store'])->name('profil
 Route::put('/profile/{id}/toggle-blocked', [ProfileController::class, 'toggleBlocked'])->name('profile.toggleBlocked');
 
 Route::post('/screenings/{screening}/purchase', [ScreeningController::class, 'purchase'])->name('ticket.purchase');
+
 
 require __DIR__ . '/auth.php';

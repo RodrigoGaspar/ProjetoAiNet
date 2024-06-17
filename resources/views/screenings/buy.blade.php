@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@if(auth()->check() && auth()->user()->type == 'C')
+@if(!auth()->check() || (auth()->check() && auth()->user()->type == 'C'))
     <x-app-layout>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="bg-white dark:bg-gray-900 shadow sm:rounded-lg">
