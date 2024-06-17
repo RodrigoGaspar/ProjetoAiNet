@@ -1,16 +1,26 @@
 @extends('layouts.main')
+
 @if(auth()->check() && auth()->user()->type == 'A')
     <x-app-layout>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-4">
-                <label for="typeFilter" class="block text-sm font-medium text-gray-700">Filter by type:</label>
-                <select id="typeFilter"
-                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option value="">All types</option>
-                    <option value="A">Admin</option>
-                    <option value="E">Employee</option>
-                    <option value="C">Customer</option>
-                </select>
+            <div class="py-4 flex justify-between items-center">
+                <div>
+                    <label for="typeFilter" class="text-sm font-small text-gray-400">Filter by type:</label>
+                    <select id="typeFilter"
+                        class="mt-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <option value="">All types</option>
+                        <option value="A">Admin</option>
+                        <option value="E">Employee</option>
+                        <option value="C">Customer</option>
+                    </select>
+                </div>
+                <div>
+                    <a href="{{ route('profile.create') }}"
+                        class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md">
+                        Add User
+                    </a>
+                </div>
+
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="profileContainer">
@@ -48,5 +58,5 @@
         </script>
     </x-app-layout>
 @else
-<p>You do not have permission to access this section.</p>
+    <p>You do not have permission to access this section.</p>
 @endif

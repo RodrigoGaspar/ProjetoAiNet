@@ -16,8 +16,12 @@
                 </div>
                 <div class="mb-4">
                     <label for="inputgenre" class="{{ $labelClasses }}">Genre</label>
-                    <input type="text" name="genre_code" id="inputgenre"
-                        class="{{ $inputClasses }} border-gray-300 dark:border-gray-600">
+                    <select name="genre_code" id="inputgenre"
+                        class="{{ $inputClasses }} border-gray-300 dark:border-gray-600" required>
+                        @foreach($genres as $genre)
+                            <option value="{{ $genre->code }}">{{ $genre->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-4">
                     <label for="inputyear" class="{{ $labelClasses }}">Year</label>
@@ -31,13 +35,13 @@
                 </div>
                 <div class="mb-4">
                     <label for="inputsynopsis" class="{{ $labelClasses }}">Synopsis</label>
-                    <input type="text" name="synopsis" id="inputsynopsis"
-                        class="{{ $inputClasses }} border-gray-300 dark:border-gray-600">
+                    <textarea type="text" name="synopsis" id="inputsynopsis"
+                        class="{{ $inputClasses }} border-gray-300 dark:border-gray-600"></textarea>
                 </div>
                 <div class="mb-4">
                     <label for="inputtrailer_url" class="{{ $labelClasses }}">Trailer URL</label>
-                    <textarea name="trailer_url" id="inputtrailer_url" rows="4"
-                        class="{{ $inputClasses }} border-gray-300 dark:border-gray-600"></textarea>
+                    <input name="trailer_url" id="inputtrailer_url" rows="4"
+                        class="{{ $inputClasses }} border-gray-300 dark:border-gray-600">
                 </div>
                 <div class="flex justify-between">
                     <a href="{{ route('movies') }}"

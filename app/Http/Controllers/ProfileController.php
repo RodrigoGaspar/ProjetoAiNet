@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
 use DB;
+use Hash;
 
 class ProfileController extends Controller
 {
@@ -114,5 +115,36 @@ class ProfileController extends Controller
         // Redirecionar de volta para a página anterior ou outra rota após o delete
         return redirect()->route('profile.index')->with('success', 'Profile deleted successfully.');
     
+    }
+
+    public function create()
+    {
+        return view('profile.create');
+    }
+
+    public function store(Request $request)
+    {
+        // Validação dos dados do formulário
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'type' => 'required|in:A,E,C',
+            'photo' => 'required|image|max:2048',
+            'password' => 'required|string',
+        ]);
+
+        $photoFilename = $request->file('photo')->getClientOriginalName();
+
+        // Criação do usuário no banco de dados
+        $user = new User();
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->type = $validatedData['type'];
+        $user->password = Hash::make($validatedData['password']);
+        $user->photo_filename = $photoFilename;
+        $user->save();
+
+        // Redirecionamento para a página de listagem de perfis
+        return redirect()->route('profile.index')->with('success', 'User created successfully.');
     }
 }

@@ -56,4 +56,6 @@
             </div>
         </div>
     </x-app-layout>
+@else
+    <p>Just for customers</p>
 @endif

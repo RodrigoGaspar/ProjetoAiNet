@@ -35,6 +35,17 @@
                             role="button">
                             Watch Trailer
                         </a>
+                        @if(auth()->check() && auth()->user()->type == 'A')
+                            <form action="{{ route('movie.delete', $movie->id) }}" method="POST" class="inline-block ml-4">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-red-600 bg-white border border-red-200 rounded-lg hover:bg-red-100 focus:outline-none focus:ring-4 focus:ring-red-100 dark:focus:ring-red-700 dark:bg-gray-800 dark:text-red-400 dark:border-red-600 dark:hover:text-white dark:hover:bg-gray-700"
+                                    onclick="return confirm('Are you sure you want to delete this movie?')">
+                                    Delete Movie
+                                </button>
+                            </form>
+                        @endif
                     </div>
 
                     <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
