@@ -30,12 +30,13 @@
                 </div>
             </div>
 
-            <div class="hidden sm:flex sm:ms-60">
-                <x-nav-link :href="route('movies')" :active="request()->routeIs('')">
-                    {{ __('Cart') }}
-                </x-nav-link>
-            </div>
-
+            @if(!auth()->check() || (auth()->check() && auth()->user()->type == 'C'))
+                <div class="hidden sm:flex sm:ms-60">
+                    <x-nav-link :href="route('movies')" :active="request()->routeIs('')">
+                        {{ __('Cart') }}
+                    </x-nav-link>
+                </div>
+            @endif
             @if(isset(Auth::user()->name))
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
@@ -56,6 +57,11 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        @if(auth()->check() && auth()->user()->type == 'C')
+                            <x-dropdown-link :href="route('profile.history')">
+                                {{ __('Purchase History') }}
+                            </x-dropdown-link>
+                        @endif
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
