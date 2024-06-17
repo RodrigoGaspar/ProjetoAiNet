@@ -6,10 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\TheaterController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\PurchaseController;
->>>>>>> rodrigo
 use App\Models\Theater;
 use Illuminate\Support\Facades\Route;
 use App\Models\Customer;

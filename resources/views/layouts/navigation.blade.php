@@ -57,11 +57,7 @@
                     @endif
                 </div>
             </div>
-<<<<<<< HEAD
-            @if(auth()->check() && auth()->user()->type == 'C')
-=======
             @if(!auth()->check() || (auth()->check() && auth()->user()->type == 'C'))
->>>>>>> rodrigo
                 <div class="hidden sm:flex sm:ms-60">
                     <x-nav-link :href="route('movies')" :active="request()->routeIs('')">
                         {{ __('Cart') }}
