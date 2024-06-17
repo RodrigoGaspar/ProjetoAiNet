@@ -46,6 +46,12 @@ Route::get('profile/manage/{id}', function ($id) {
     $profile = App\Models\User::findOrFail($id);
     return view('profile.manage', compact('profile'));
 })->name('profile.manage');
+Route::get('/profile/{id}/edit', [ProfileController::class, 'change'])->name('profile.change');
+Route::put('/profile/{id}', [ProfileController::class, 'changed'])->name('profile.changed');
+Route::delete('/profile/{id}', [ProfileController::class, 'softDelete'])->name('profile.delete');
+
+
+
 
 Route::put('/profile/{id}/toggle-blocked', [ProfileController::class, 'toggleBlocked'])->name('profile.toggleBlocked');
 

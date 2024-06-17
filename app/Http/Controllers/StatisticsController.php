@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
 use App\Models\Screening;
@@ -14,18 +15,20 @@ class StatisticsController extends Controller
 {
     public function index()
     {
-        for ($i = 1; $i < 7; $i++) {
-            $purchase[$i] = Purchase::whereMonth('date', $i)->whereYear('date', '2024')->count();
-            $sale[$i] = Purchase::whereMonth('date', $i)->whereYear('date', '2024')->sum('total_price');
+        for ($i = 1; $i <= 12; $i++) {
+            $sales[$i] = Purchase::whereMonth('date', $i)->whereYear('date', '2023')->count();
+            $revenues[$i] = Purchase::whereMonth('date', $i)->whereYear('date', '2023')->sum('total_price');
         }
 
         $purchases = [
-            ['Month' => 'January', 'Sales' => $purchase[1], 'Revenue' => $sale[1]],
-            ['Month' => 'February', 'Sales' => $purchase[2], 'Revenue' => $sale[2]],
-            ['Month' => 'March', 'Sales' => $purchase[3], 'Revenue' => $sale[3]],
-            ['Month' => 'April', 'Sales' => $purchase[4], 'Revenue' => $sale[4]],
-            ['Month' => 'May', 'Sales' => $purchase[5], 'Revenue' => $sale[5]],
-            ['Month' => 'June', 'Sales' => $purchase[6], 'Revenue' => $sale[6]],
+            ['Month' => 'January', 'Sales' => $sales[1], 'Revenue' => $revenues[1]],
+            ['Month' => 'February', 'Sales' => $sales[2], 'Revenue' => $revenues[2]],
+            ['Month' => 'March', 'Sales' => $sales[3], 'Revenue' => $revenues[3]],
+            ['Month' => 'April', 'Sales' => $sales[4], 'Revenue' => $revenues[4]],
+            ['Month' => 'May', 'Sales' => $sales[5], 'Revenue' => $revenues[5]],
+            ['Month' => 'June', 'Sales' => $sales[6], 'Revenue' => $revenues[6]],
+            ['Month' => 'July', 'Sales' => $sales[7], 'Revenue' => $revenues[7]],
+            ['Month' => 'August', 'Sales' => $sales[8], 'Revenue' => $revenues[8]]
         ];
 
         $maxTheaters = Theater::count();
