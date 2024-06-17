@@ -21,35 +21,44 @@ class GenreController extends Controller
 
     public function create(): View
     {
-        $newGenre = new Genre();
-        return view('genres.create')->with('genre', $newGenre);
+        return view('genres.create');
     }
 
     public function store(Request $request): RedirectResponse
     {
-        Genre::create($request->all());
-        return redirect('/genres');
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255|unique:genres,name',
+            'code' => 'required|string|max:255|unique:genres,code',
+        ]);
+
+        $genre = new Genre();
+        $genre->name = $validatedData['name'];
+        $genre->code = strtoupper($validatedData['name']);
+        $genre->save();
+
+        return redirect()->route('genres')->with('success', 'Genre created successfully.');
     }
 
     public function edit(Genre $genre)
     {
+        $genre = Genre::where('code', $genre->code)->firstOrFail();
         return view('genres.edit', compact('genre'));
     }
 
-    public function update(Request $request, Genre $genre)
-    {
-        $request->validate([
-            'code' => 'required|string|between:1,20|regex:/(^([A-Z]))/u',
-            'name' => 'required|string|between:1,20',
-        ]);
+    public function update(Request $request, $code)
+{
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'code' => 'required|string|max:255|unique:genres,code,' . $code . ',code',
+    ]);
 
-        $genre->code = $request->code;
-        $genre->pname = $request->name;
-        $genre->save();
+    $genre = Genre::where('code', $code)->firstOrFail();
+    $genre->name = $validatedData['name'];
+    $genre->code = strtoupper($validatedData['name']);
+    $genre->save();
 
-        return redirect()->route('genres')->with('success', 'Genre updated successfully.');
-    }
-
+    return redirect()->route('genres')->with('success', 'Genre updated successfully.');
+}
     public function softDelete(Genre $genre)
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
